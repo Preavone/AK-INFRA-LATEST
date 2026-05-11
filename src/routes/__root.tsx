@@ -4,11 +4,9 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
+import "../styles.css";
 
 function NotFoundComponent() {
   return (
@@ -68,86 +66,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AK Infra Ltd | Reliable Ready Mix Concrete Supplier in Veraval" },
-      { name: "description", content: "AK Infra Ltd provides trusted Ready Mix Concrete solutions in Veraval and Gir Somnath. Equipped with a Venus CP 30 plant for consistent M20, M25, and M30 concrete delivery." },
-      { name: "keywords", content: "ready mix concrete supplier Veraval, RMC plant Veraval, concrete delivery Gir Somnath, M20 M25 M30 concrete, Venus CP 30 batching plant, Gujarat" },
-      { name: "author", content: "AK Infra Ltd" },
-      { name: "robots", content: "index, follow" },
-      { name: "revisit-after", content: "7 days" },
-      { property: "og:title", content: "AK Infra Ltd | Reliable Ready Mix Concrete Supplier in Veraval" },
-      { property: "og:description", content: "Trusted Ready Mix Concrete supplier in Veraval & Gir Somnath. Providing consistent M20, M25, and M30 concrete grades for residential and commercial projects." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://akinfra.ltd" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AK Infra Ltd - Ready Mix Concrete Supplier in Veraval" },
-      { name: "twitter:description", content: "Reliable RMC supplier in Veraval offering consistent concrete grades, efficient dispatch & professional service." },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
-      { rel: "canonical", href: "https://akinfra.ltd" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "AK Infra Ltd",
-          "image": "https://akinfra.ltd/logo.png",
-          "description": "Leading Ready Mix Concrete supplier in Veraval, Gir Somnath, Gujarat providing premium RMC services",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Veraval",
-            "addressLocality": "Gir Somnath",
-            "postalCode": "362265",
-            "addressRegion": "Gujarat",
-            "addressCountry": "IN"
-          },
-          "telephone": "+917698079478",
-          "email": "sales@akinfra.ltd",
-          "url": "https://akinfra.ltd",
-          "sameAs": [
-            "https://www.facebook.com/akinfra",
-            "https://www.instagram.com/akinfra"
-          ],
-          "priceRange": "$$",
-          "areaServed": ["Veraval", "Gir Somnath", "Gujarat", "India"],
-          "serviceType": ["Ready Mix Concrete", "Concrete Pumping", "Concrete Delivery"],
-          "foundingDate": "2008",
-          "knowsAbout": ["Ready Mix Concrete", "Concrete Pumping", "Infrastructure Construction", "RMC Services"]
-        })
-      }
-    ]
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
